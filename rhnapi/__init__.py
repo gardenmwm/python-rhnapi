@@ -100,9 +100,11 @@ def getHostname(url):
     returns a sanitised URL for RHN connection - deals with those that
     add protocols or paths to their hostnames!
     """
-    urlpattern = re.compile(r'(http[s]?://)?([\w.]+)([/\w]*)')
+    #urlpattern = re.compile(r'(http[s]?://)?([\w.]+)([/\w]*)')
     # strip away all but the hostname...
-    hostname = urlpattern.search(url).groups()[1]
+    #hostname = urlpattern.search(url).groups()
+    # Regex breaks on '-' in url
+    hostname=url
 
     # add  the correct start and end bits:
     return hostname
@@ -114,12 +116,13 @@ def rhnifyURL(url):
     returns a sanitised URL for RHN connection - deals with those that
     add protocols or paths to their hostnames!
     """
-    urlpattern = re.compile(r'(http[s]?://)?([\w.]+)([/\w]*)')
+    #urlpattern = re.compile(r'(http[s]?://)?([\w.]+)([/\w]*)')
     # strip away all but the hostname...
-    hostname = urlpattern.search(url).groups()[1]
+    #hostname = urlpattern.search(url).groups()[1]
+    # Regex breaks on '-' in url
 
     # add  the correct start and end bits:
-    return 'https://%s/rpc/api' % hostname
+    return 'http://%s/rpc/api' % hostname
 
 # ---------------------------------------------------------------------------- #
 
